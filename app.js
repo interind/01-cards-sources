@@ -38,7 +38,7 @@ const cars = [
   if(evt.target.classList.contains('slide')) {
     clearActiveCard();
     evt.target.classList.toggle('active');
-    setStorage(name, bool = true);
+    setStorage(name, bool);
     body.style.backgroundImage = evt.target.style.backgroundImage;
     setStorage('body', evt.target.style.backgroundImage);
   }
@@ -54,7 +54,6 @@ const cars = [
  }
 
  function setStorage(name, bool) {
-   console.log(bool);
    if (bool) {
      localStorage.setItem(name, bool);
    }
@@ -81,6 +80,9 @@ const cars = [
   setStorage(name, active);
   if (localStorage.getItem('body')) {
     body.style.backgroundImage = localStorage.getItem('body');
+  } else if (active) {
+    body.style.backgroundImage = slide.style.backgroundImage;
+    setStorage('body', body.style.backgroundImage);
   }
 
   active && slide.classList.add('active');
